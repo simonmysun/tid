@@ -3,6 +3,11 @@
     <head>
         <meta charset="utf-8">
         <title>Demo of tid</title>
+        <script type="text/javascript">
+          if ((window.location.hostname != 'localhost') && (window.location.protocol != "https:")) {
+            window.location.protocol = "https";
+          }
+        </script>
     </head>
     <body>
         <div id="config"><a href="#" class="btn" id="btn-save">SAVE</a><a href="#" class="btn" id="btn-update">PREVIEW</a> Markdown Parsing Time: <span id="markdown-time">0</span>ms. Mathjax Parse Time: <span id='mathjax-time'>0</span>ms. Scroll Preview Generating time <span id='thumbnail-time'>0</span>ms. </div>
