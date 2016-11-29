@@ -1,0 +1,215 @@
+/* Forked from https://github.com/sindresorhus/github-markdown-css
+   Original License MIT
+ */
+
+@font-face {
+  font-family: 'Vollkorn';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Vollkorn Regular'), local('Vollkorn-Regular'), url('fonts/idGKtgpe38okB6bfeHMsLPesZW2xOQ-xsNqO47m55DA.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+/* latin */
+@font-face {
+  font-family: 'Vollkorn';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Vollkorn Bold'), local('Vollkorn-Bold'), url('fonts/wMZpbUtcCo9GUabw9JODeo4P5ICox8Kq3LLUNMylGO4.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+/* latin */
+@font-face {
+  font-family: 'Vollkorn';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Vollkorn Italic'), local('Vollkorn-Italic'), url('fonts/Oiz0tNwvC-Nd29SBQWfWTPk_vArhqVIZ0nv9q090hN8.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+/* latin */
+@font-face {
+  font-family: 'Vollkorn';
+  font-style: italic;
+  font-weight: 700;
+  src: local('Vollkorn Bold Italic'), local('Vollkorn-BoldItalic'), url('fonts/KNiAlx6phRqXCwnZZG51JIWiMMZ7xLd792ULpGE4W_Y.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+.marked {
+  padding: 1em;
+  margin: auto;
+  max-width: 42em;
+  background: #fefefe;
+}
+.marked {
+  font-size: 1.3em;
+  font-family: Vollkorn, serif;
+  color: #333;
+  line-height: 1.4;
+  text-align: justify;
+}
+.marked header,
+.marked nav,
+.marked article,
+.marked footer {
+  width: 700px;
+  margin: 0 auto;
+}
+.marked article {
+  margin-top: 4em;
+  margin-bottom: 4em;
+  min-height: 400px;
+}
+.marked footer {
+  margin-bottom: 50px;
+}
+.marked video {
+  margin: 2em 0;
+  border: 1px solid #ddd;
+}
+.marked nav {
+  font-size: .9em;
+  font-style: italic;
+  border-bottom: 1px solid #ddd;
+  padding: 1em 0;
+}
+.marked nav p {
+  margin: 0;
+}
+.marked h1 {
+  margin-top: 0;
+  font-weight: normal;
+}
+.marked h2 {
+  font-weight: normal;
+}
+.marked h3 {
+  font-weight: normal;
+  font-style: italic;
+}
+.marked p {
+  margin-top: 0;
+  -webkit-hypens: auto;
+  -moz-hypens: auto;
+  hyphens: auto;
+}
+.marked ul {
+  list-style: square;
+  padding-left: 1.2em;
+}
+.marked ol {
+  padding-left: 1.2em;
+}
+.marked blockquote {
+  margin-left: 1em;
+  padding-left: 1em;
+  border-left: 1px solid #ddd;
+  background: rgba(0, 0, 0, 0.03);
+}
+.marked code {
+  font-family: "Consolas", "Menlo", "Monaco", monospace, serif;
+  font-size: .9em;
+}
+.marked a {
+  color: #2484c1;
+  text-decoration: none;
+}
+.marked a:hover {
+  text-decoration: underline;
+}
+.marked a img {
+  border: none;
+}
+.marked h1 a,
+.marked h1 a:hover {
+  color: #333;
+  text-decoration: none;
+}
+.marked hr {
+  color: #ddd;
+  height: 1px;
+  margin: 2em 0;
+  border-top: solid 1px #ddd;
+  border-bottom: none;
+  border-left: 0;
+  border-right: 0;
+}
+.marked p#heart {
+  font-size: 2em;
+  line-height: 1;
+  text-align: center;
+  color: #ccc;
+}
+.marked .red {
+  color: #B50000;
+}
+.marked body#index li {
+  margin-bottom: 1em;
+}
+@media only screen and (max-device-width: 1024px) {
+  .marked body {
+    font-size: 120%;
+    line-height: 1.4;
+  }
+}
+@media only screen and (max-device-width: 480px) {
+  .marked body {
+    text-align: left;
+  }
+  .marked article,
+  .marked footer {
+    width: auto;
+  }
+  .marked article {
+    padding: 0 10px;
+  }
+}
+
+.marked table {
+  margin: 0 -1rem 1rem -1rem;
+  width: calc(102%);
+  overflow: hidden;
+  border-collapse: collapse;
+}
+.marked table caption {
+  padding-top: 0.5rem;
+  border-top: 1px solid #eee;
+  caption-side: bottom;
+  text-align: center;
+  font-style: italic;
+  color: #666;
+}
+.marked tr {
+  transition: 0.15s;
+}
+.marked thead tr {
+  border-bottom: 2px solid #888;
+}
+.marked tfoot tr {
+  border-bottom: none;
+  border-top: 1px solid #eee;
+  font-weight: bolder;
+}
+.marked tbody tr:hover,
+.marked tfoot tr:hover {
+  background-color: #eee;
+}
+.marked td,
+.marked th {
+  position: relative;
+  padding: 0.3rem 1rem;
+}
+.marked th {
+  font-weight: bolder;
+}
+.marked tbody tr:first-of-type td,
+.marked tbody tr:first-of-type th {
+  padding-top: 0.5rem;
+}
+
+.marked .emoji {
+  height: 1.3em;
+}
+
+.marked img {
+  max-height: 50vh;
+  max-width: 50vw;
+}

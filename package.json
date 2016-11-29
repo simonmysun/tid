@@ -1,0 +1,57 @@
+{
+  "name": "tid",
+  "version": "0.0.1",
+  "description": "Take It Down - yet another browser based \"editor\"",
+  "bin": {
+    "tid": "bin/tid"
+  },
+  "main": "lib/server.js",
+  "scripts": {
+    "build": "webpack --progress",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simonmysun/tid.git"
+  },
+  "keywords": [
+    "editor",
+    "markdown",
+    "mathjax"
+  ],
+  "author": "MY Sun <simonmysun@gmail.com> (https://simonmysun.github.io/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/simonmysun/tid/issues"
+  },
+  "homepage": "https://github.com/simonmysun/tid#readme",
+  "dependencies": {
+    "commander": "^2.9.0",
+    "express": "^4.14.0",
+    "open": "0.0.5",
+    "serve-index": "^1.8.0",
+    "xhr": "^2.3.1"
+  },
+  "devDependencies": {
+    "brace": "^0.9.0",
+    "css-loader": "^0.26.0",
+    "highlight.js": "^9.8.0",
+    "json-loader": "^0.5.4",
+    "markdown-it": "^8.1.0",
+    "markdown-it-anchor": "^2.5.1",
+    "markdown-it-emoji": "^1.3.0",
+    "markdown-it-footnote": "^3.0.1",
+    "markdown-it-mathjax": "^1.0.3",
+    "markdown-it-sub": "^1.0.0",
+    "markdown-it-sup": "^1.0.0",
+    "markdown-it-table-of-contents": "^0.3.0",
+    "nodemon": "^1.11.0",
+    "rasterizehtml": "^1.2.4",
+    "split.js": "^1.1.1",
+    "style-loader": "^0.13.1",
+    "twemoji": "^2.2.0",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.13.3"
+  }
+}

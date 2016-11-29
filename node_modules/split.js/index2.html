@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Split.js</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/styles/github.min.css">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/primer/primer/master/css/primer.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/highlight.min.js"></script>
+    <style>
+    .split {
+        -webkit-box-sizing: border-box;
+           -moz-box-sizing: border-box;
+                box-sizing: border-box;
+
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .content {
+        border: 1px solid #C0C0C0;
+        box-shadow: inset 0 1px 2px #e4e4e4;
+        background-color: #fff;
+    }
+
+    .content p {
+        padding: 10px;
+        margin: 0;
+    }
+
+    .content.code {
+        background-color: #F8F8F8;
+    }
+
+    .gutter {
+        background-color: transparent;
+        background-repeat: no-repeat;
+        background-position: 50%;
+    }
+
+    .gutter.gutter-horizontal {
+        cursor: ew-resize;
+        background-image: url('grips/vertical.png');
+    }
+
+    .gutter.gutter-vertical {
+        cursor: ns-resize;
+        background-image: url('grips/horizontal.png');
+    }
+
+    .split.split-horizontal, .gutter.gutter-horizontal {
+        height: 100%;
+        float: left;
+    }
+    .columns {
+        height: 200px;
+        margin: 0;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+      <br>
+      <h1>Split.js</h1>
+      <div class="columns">
+        <div id="a" class="split split-horizontal content">
+          <p>
+            Split.js is a lightweight, unopinionated utility for creating adjustable split views or panes.
+            <br><br>
+            No dependencies or markup required, just two or more elements with a common parent.
+            <br><br>
+            Views can be split horizontally or vertically, with draggable gutters inserted between every two elements.
+          </p>
+        </div>
+        <div id="b" class="split split-horizontal content">
+          <p>
+            Hi there
+          </p>
+        </div>
+      </div>
+
+      <br>
+      <h2>Options</h2>
+
+      <div class="columns">
+        <div id="c" class="split split-horizontal content">
+          <p>
+            <strong>elements</strong>
+            <br>
+            An array of HTML elements or query selectors to create the split with.
+            All elements must have a common, immediate parent. A mix of elements and
+            query selectors can be used.
+            <br><br>
+            With no other options, elements are split evenly over the size of the parent.
+          </p>
+        </div>
+        <div id="d" class="split split-horizontal content code">
+<pre><code class="js">Split(['#c', '#d']);
+
+Split([document.getElementById('c'), '#d']);
+
+Split([document.getElementById('c'), document.getElementById('d')]);</code></pre>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="columns">
+        <div id="e" class="split split-horizontal content">
+          <p>
+            <strong>sizes</strong>
+            <br>
+            An array of integers/floats corresponding to inital percentage of parent size, or CSS values.
+            Number of values in array must match the number of elements in the split.
+            <br><br>
+            <strong>CSS values are not recommended</strong>, sizes and gutters can only be calculated automatically with numeric percentage values.
+          </p>
+        </div>
+        <div id="f" class="split split-horizontal content code">
+<pre><code class="js">Split(['#e', '#f'], {
+    sizes: [40, 60]
+});
+
+Split(['#e', '#f'], {
+    sizes: ['40%', '60%']  // not recommended
+});
+
+Split(['#e', '#f'], {
+    sizes: ['380px', '580px']  // not recommended
+});</code></pre>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="columns">
+        <div id="g" class="split split-horizontal content">
+          <p>
+            <strong>minSize</strong> <i>100</i>
+            <br>
+            The minimum size of each element in the split in pixels. Elements can not be
+            dragged smaller than the minimum size. If the minimum size is 0, the element will be hidden with display:none until it is dragged again.
+            <br><br>
+            Minimum sizes can be specified as a number or array, in which case each element's minimum size is set individually.
+          </p>
+        </div>
+        <div id="h" class="split split-horizontal content code">
+<pre><code class="js">Split(['#g', '#h'], {
+    minSize: 0
+});
+
+Split(['#g', '#h'], {
+    minSize: [300, 50]
+});</code></pre>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="columns">
+        <div id="i" class="split split-horizontal content">
+          <p>
+            <strong>gutterSize</strong> <i>10</i>
+            <br>
+            The gutter size between each split in pixels.
+          </p>
+        </div>
+        <div id="j" class="split split-horizontal content code">
+<pre><code class="js">Split(['#i', '#j'], {
+    gutterSize: 20
+});</code></pre>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="columns">
+        <div id="k" class="split split-horizontal content">
+          <p>
+            <strong>snapOffset</strong> <i>30</i>
+            <br>
+            The offset from the minimum size where dragging snaps to the minimum size. Set to 0 to disable snapping.
+          </p>
+        </div>
+        <div id="l" class="split split-horizontal content code">
+<pre><code class="js">Split(['#k', '#l'], {
+    snapOffset: 0
+});</code></pre>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="columns">
+        <div id="m" class="split split-vertical content">
+          <p>
+            <strong>direction</strong> <i>'horizontal'</i>
+            <br>
+            The direction to split in. Either 'horizontal' or 'vertical'.
+          </p>
+        </div>
+        <div id="n" class="split split-vertical content code">
+<pre><code class="js">Split(['#k', '#l'], {
+    direction: 'vertical'
+});</code></pre>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="columns">
+        <div id="o" class="split split-horizontal content">
+          <p>
+            <strong>cursor</strong> <i>'ew-resize'</i>
+            <br>
+            The cursor to switch to when dragging. Defaults to 'ew-resize' to horizontal splits
+            and 'ns-resize' for vertical splits.
+            <br><br>
+            Cursors when not dragging need to be set in CSS.
+          </p>
+        </div>
+        <div id="p" class="split split-horizontal content code">
+<pre><code class="js">Split(['#o', '#p'], {
+    cursor: 'grabbing'
+});</code></pre>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="columns">
+        <div id="q" class="split split-horizontal content">
+          <p>
+            <strong>callbacks</strong>
+            <br>
+            onDrag, onDragStart, onDragEnd callbacks.
+          </p>
+        </div>
+        <div id="r" class="split split-horizontal content code">
+<pre><code class="js">Split(['#q', '#r'], {
+    sizes: [40, 60],
+    onDrag: function() {
+
+    },
+    onDragStart: function() {
+
+    },
+    onDragEnd: function() {
+
+    }
+})</code></pre>
+        </div>
+      </div>
+
+      <br>
+      <h2>Examples</h2>
+
+      <div class="columns">
+        <div id="s" class="split split-horizontal content">
+          <p>
+            <strong>multiple splits</strong>
+            <br>
+            The cursor to switch to when dragging. Defaults to 'ew-resize' to horizontal splits
+            and 'ns-resize' for vertical splits.
+            <br><br>
+            Cursors when not dragging need to be set in CSS.
+          </p>
+        </div>
+        <div id="t" class="split split-horizontal content"></div>
+        <div id="u" class="split split-horizontal content code">
+<pre><code class="js">Split(['#s', '#t', '#u']);</code></pre>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="columns">
+        <div id="v" class="split split-horizontal content">
+          <p>
+            <strong>zero minSize</strong>
+            <br>
+            The cursor to switch to when dragging. Defaults to 'ew-resize' to horizontal splits
+            and 'ns-resize' for vertical splits.
+            <br><br>
+            Cursors when not dragging need to be set in CSS.
+          </p>
+        </div>
+        <div id="w" class="split split-horizontal content code">
+<pre><code class="js">Split(['#v', '#w'], {
+    minSize: 0
+});</code></pre>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="columns">
+        <div id="x" class="split split-horizontal content">
+          <p>
+            <strong>zero size</strong>
+            <br>
+            The cursor to switch to when dragging. Defaults to 'ew-resize' to horizontal splits
+            and 'ns-resize' for vertical splits.
+            <br><br>
+            Cursors when not dragging need to be set in CSS.
+          </p>
+        </div>
+        <div id="y" class="split split-horizontal content"></div>
+        <div id="z" class="split split-horizontal content code">
+<pre><code class="js">Split(['#s', '#t', '#u']);</code></pre>
+        </div>
+      </div>
+
+    </div>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="split.js"></script>
+    <script>
+        Split(['#a', '#b'], {
+          gutterSize: 8
+        })
+
+        Split(['#c', '#d'], {
+          sizes: [40, 60],
+          gutterSize: 8
+        })
+
+        Split(['#e', '#f'], {
+          sizes: [40, 60],
+          gutterSize: 8
+        })
+
+        Split(['#g', '#h'], {
+          sizes: [40, 60],
+          minSize: 0,
+          gutterSize: 8
+        })
+
+        Split(['#i', '#j'], {
+          sizes: [40, 60],
+          gutterSize: 20
+        })
+
+        Split(['#k', '#l'], {
+          sizes: [40, 60],
+          snapOffset: 0
+        })
+
+        Split(['#m', '#n'], {
+          direction: 'vertical',
+          minSize: 10,
+          snapOffset: 0
+        })
+
+        Split(['#o', '#p'], {
+          sizes: [40, 60],
+          cursor: 'grabbing'
+        })
+
+        Split(['#q', '#r'], {
+          sizes: [40, 60],
+          onDragStart: function() {
+            console.log('dragging...')
+          },
+          onDragEnd: function() {
+            console.log('drag ended.')
+          }
+        })
+
+        Split(['#s', '#t', '#u'])
+
+        Split(['#v', '#w'], {
+            minSize: 0
+        })
+
+        Split(['#x', '#y', '#z'], {
+            sizes: [50, 50, 0],
+            minSize: [100, 100, 0]
+        })
+    </script>
+</body>
+</html>

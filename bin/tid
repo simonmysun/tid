@@ -1,0 +1,24 @@
+#!/usr/bin/env node
+
+var program = require('commander');
+
+program.version('0.0.1')
+    .description('Take It Down - yet another browser based "editor"')
+    .option('-B, --no-browser', 'do not start browser after the service started. defaults to true')
+    .option('-C, --chdir [path]', 'change the working directory, defaults to current directory')
+    .option('-c, --config [path]', 'set config path. defaults to ./deploy.conf')
+    .option('-p, --port [n]', 'specify a port to use, by default the port 3000 will be used', parseInt)
+    .option('-w, --watch', 'watch file changes and automatically refresh')
+    .parse(process.argv);
+
+var options = {
+    targetPath: program.chdir || process.cwd(),
+    port: program.port || 3000
+};
+
+require('./../lib/server.js').start(options, function() {
+    if(program.browser) {
+        var open = require('open');
+        open('http://localhost:' + options.port + '/');;
+    }
+});
