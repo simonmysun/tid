@@ -1,6 +1,7 @@
 @import './assets/markdown.css';
 @import './assets/hljs-default.css';
 @import './assets/split.css';
+@import './assets/notify.css';
 
 html, body {
   width: 100%;
@@ -105,3 +106,4 @@ body {
 #scroll-thumb {
   position: relative;
 }
+

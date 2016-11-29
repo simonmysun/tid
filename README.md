@@ -14,13 +14,14 @@ Take It Down - yet another browser based "editor"
     -B, --no-browser     do not start browser after the service started. defaults to true
     -C, --chdir [path]   change the working directory, defaults to current directory
     -c, --config [path]  set config path. defaults to ./deploy.conf
-    -p, --port [n]       specify a port to use, by default the port 3000 will be used
+    -P, --port [n]       specify a port to use, by default the port 3000 will be used
     -w, --watch          watch file changes and automatically refresh
+
 ```
 
 ## TODO
 * Fix bugs;
-* Better scroll and scroll sync(according to the content);
+* Scroll sync(according to the content);
 * Faster previewing or less lagging;
 * Print / to PDF conversion support;
 * UML diagram support;
