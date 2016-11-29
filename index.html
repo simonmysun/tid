@@ -1,5 +1,16 @@
-# Markdown Test
-This document is forked from https://github.com/markdown-it/markdown-it.github.io
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Demo of tid</title>
+    </head>
+    <body>
+        <div id="config"><a href="#" class="btn" id="btn-save">SAVE</a><a href="#" class="btn" id="btn-update">PREVIEW</a> Markdown Parsing Time: <span id="markdown-time">0</span>ms. Mathjax Parse Time: <span id='mathjax-time'>0</span>ms. Scroll Preview Generating time <span id='thumbnail-time'>0</span>ms. </div>
+        <div id="wrapper">
+            <div id="source" class="content split split-horizontal"># Markdown Test
+This document is forked from https://github.com/markdown-it/markdown-it.github.io .
+
+This is a demo page of `tid` software. Most of the features has been shown. With locally installed you can experience creating, updating files and faster loading, etc. [More details](https://github.com/simonmysun/tid).
 ## Headings
 # h1 Heading 8-)
 ## h2 Heading
@@ -32,7 +43,7 @@ test.. test... test..... test?..... test!....
 
 !!!!!! ???? ,,  -- ---
 
-"Smartypants, double quotes" and 'single quotes'
+&quot;Smartypants, double quotes&quot; and &#39;single quotes&#39;
 
 
 ```markdown
@@ -42,7 +53,7 @@ test.. test... test..... test?..... test!....
 
 !!!!!! ???? ,,  -- ---
 
-"Smartypants, double quotes" and 'single quotes'
+&quot;Smartypants, double quotes&quot; and &#39;single quotes&#39;
 ```
 
 ## Emphasis
@@ -55,14 +66,14 @@ This is __bold__ and this is _italic_.
 ~~Strikethrough~~
 ```
 ## Blockquotes
-> Blockquotes can also be nested...
->> ...by using additional greater-than signs right next to each other...
-> > > ...or with spaces between arrows.
+&gt; Blockquotes can also be nested...
+&gt;&gt; ...by using additional greater-than signs right next to each other...
+&gt; &gt; &gt; ...or with spaces between arrows.
 
 ```markdown
-> Blockquotes can also be nested...
->> ...by using additional greater-than signs right next to each other...
-> > > ...or with spaces between arrows.
+&gt; Blockquotes can also be nested...
+&gt;&gt; ...by using additional greater-than signs right next to each other...
+&gt; &gt; &gt; ...or with spaces between arrows.
 ```
 
 ## Lists
@@ -113,34 +124,34 @@ Inline `code`.
 Syntax highlighting with the help of [Highlight.js](https://highlightjs.org/). 
 Now it supports 168 languages. 
 ```c++
-#include <iostream>
+#include &lt;iostream&gt;
 int main() {
-	std::cout << "Hello, world!\n";
+	std::cout &lt;&lt; &quot;Hello, world!\n&quot;;
 }
 ```
 ```haskell
 primes = filterPrime [2..] 
   where filterPrime (p:xs) = 
-          p : filterPrime [x | x <- xs, x `mod` p /= 0]
+          p : filterPrime [x | x &lt;- xs, x `mod` p /= 0]
 ```
-<pre class="hljs">
+&lt;pre class=&quot;hljs&quot;&gt;
 Inline `code`. 
 Syntax highlighting with the help of [Highlight.js](https://highlightjs.org/). 
 ow support 168 languages. 
 
 ```c++
-#include <iostream>
+#include &lt;iostream&gt;
 int main() {
-	std::cout << "Hello, world!\n";
+	std::cout &lt;&lt; &quot;Hello, world!\n&quot;;
 }
 ```
 
 ```haskell
 primes = filterPrime [2..] 
   where filterPrime (p:xs) = 
-          p : filterPrime [x | x <- xs, x `mod` p /= 0]
+          p : filterPrime [x | x &lt;- xs, x `mod` p /= 0]
 ```
-</pre>
+&lt;/pre&gt;
 
 ## Tables
 Table with alignment support: 
@@ -174,29 +185,29 @@ ext    | extension to be used for dest files.
 ## Links
 [link text](http://dev.nodeca.com)
 
-[link with title](http://nodeca.github.io/pica/demo/ "title text!")
+[link with title](http://nodeca.github.io/pica/demo/ &quot;title text!&quot;)
 
 This is [an example][link id] reference-style link.
 
-[link id]: http://example.com/  "Optional Title Here"
+[link id]: http://example.com/  &quot;Optional Title Here&quot;
 
 Autoconverted link https://github.com/nodeca/pica (enable linkify to see)
 
 ```markdown
 [link text](http://dev.nodeca.com)
 
-[link with title](http://nodeca.github.io/pica/demo/ "title text!")
+[link with title](http://nodeca.github.io/pica/demo/ &quot;title text!&quot;)
 
 This is [an example][link id] reference-style link.
 
-[link id]: http://example.com/  "Optional Title Here"
+[link id]: http://example.com/  &quot;Optional Title Here&quot;
 
 Autoconverted link https://github.com/nodeca/pica (enable linkify to see)
 ```
 
 ## Images
 ![Minion](https://octodex.github.com/images/minion.png)
-![Stormtroopocat](https://octodex.github.com/images/stormtroopocat.jpg "The Stormtroopocat")
+![Stormtroopocat](https://octodex.github.com/images/stormtroopocat.jpg &quot;The Stormtroopocat&quot;)
 
 Like links, Images also have a footnote style syntax
 
@@ -204,11 +215,11 @@ Like links, Images also have a footnote style syntax
 
 With a reference later in the document defining the URL location:
 
-[pic id]: https://octodex.github.com/images/dojocat.jpg  "The Dojocat"
+[pic id]: https://octodex.github.com/images/dojocat.jpg  &quot;The Dojocat&quot;
 
 ```markdown
 ![Minion](https://octodex.github.com/images/minion.png)
-![Stormtroopocat](https://octodex.github.com/images/stormtroopocat.jpg "The Stormtroopocat")
+![Stormtroopocat](https://octodex.github.com/images/stormtroopocat.jpg &quot;The Stormtroopocat&quot;)
 
 Like links, Images also have a footnote style syntax
 
@@ -216,7 +227,7 @@ Like links, Images also have a footnote style syntax
 
 With a reference later in the document defining the URL location:
 
-[pic id]: https://octodex.github.com/images/dojocat.jpg  "The Dojocat"
+[pic id]: https://octodex.github.com/images/dojocat.jpg  &quot;The Dojocat&quot;
 ```
 
 ## Plugins
@@ -228,11 +239,11 @@ Write $\LaTeX$ formulas as inline, $x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$, or as blo
 ```
 
 ### Emojies
-> Classic markup: :wink: :crush: :cry: :tear: :laughing: :yum:
->
-> Shortcuts (emoticons): :-) :-( 8-) ;)
->
-> Unicode: 😀😂😱❤
+&gt; Classic markup: :wink: :crush: :cry: :tear: :laughing: :yum:
+&gt;
+&gt; Shortcuts (emoticons): :-) :-( 8-) ;)
+&gt;
+&gt; Unicode: 😀😂😱❤
 
 ### Table of content
 [[TOC]]
@@ -264,3 +275,12 @@ Footnote 1 link[^first]. Footnote 2 link[^second]. Inline footnote^[Text of inli
     and multiple paragraphs.
 [^second]: Footnote text.
 ```
+</div>
+            <div id="preview" class="content split split-horizontal"><div class="marked" id="preview-content"></div></div>
+            <div id="scroll-thumb" class="noselect"><img id="scroll-thumb-img"><div id="preview-viewport"></div></div>
+        </div>
+        <div id="noti"></div>
+        <script type="text/javascript" src="/assets/mathjax.js/unpacked/MathJax.js?config=default"></script>
+        <script type="text/javascript" src="/assets/scripts.js" charset="utf-8"></script>
+    </body>
+</html>
