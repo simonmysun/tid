@@ -1,5 +1,10 @@
 # tid
-Take It Down - yet another browser based "editor"
+Take It Down - yet another browser based "editor". There is a [demo page](https://simonmysun.github.io/tid/) but it's not promised to be up to date. 
+
+## Install
+```
+npm install tid -g
+```
 
 ## Usage
 ```
