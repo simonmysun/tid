@@ -33,3 +33,6 @@ npm install tid -g
 * Realtime;
 * Tests;
 * Compatible support for very large document;
+* Single file hosting;
+* More file extensions(What the browser cannot do: codes, etc. or maybe `child_process.exec('xdg-open file'))`;
+* Auto refresh support when file changed(Client asking for hash sum or server push notifications?);
