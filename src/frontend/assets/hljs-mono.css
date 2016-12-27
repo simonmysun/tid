@@ -1,0 +1,78 @@
+/* Forked from https://github.com/isagalaev/highlight.js/blob/master/src/styles/github.css */
+
+.hljs {
+  color: #333;
+  display: block;
+  overflow-x: auto;
+  padding: .5em;
+}
+
+.hljs-addition {
+  background: #f5f5f5;
+}
+
+.hljs-built_in,.hljs-builtin-name {
+  color: #6d6d6d;
+}
+
+.hljs-comment,.hljs-quote {
+  color: #989898;
+  font-style: italic;
+}
+
+.hljs-deletion {
+  background: #e4e4e4;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-keyword,.hljs-selector-tag,.hljs-subst {
+  color: #333333;
+  font-weight: 700;
+}
+
+.hljs-meta {
+  color: #999999;
+  font-weight: 700;
+}
+
+.hljs-number,.hljs-literal,.hljs-variable,.hljs-template-variable,.hljs-tag .hljs-attr {
+  color: #656565;
+}
+
+.hljs-regexp,.hljs-link {
+  color: #717171;
+}
+
+.hljs-string,.hljs-doctag {
+  color: #3f3f3f;
+}
+
+.hljs-strong {
+  font-weight: 700;
+}
+
+.hljs-subst {
+  font-weight: 400;
+}
+
+.hljs-symbol,.hljs-bullet {
+  color: #282828;
+}
+
+.hljs-tag,.hljs-name,.hljs-attribute {
+  color: #090909;
+  font-weight: 400;
+}
+
+.hljs-title,.hljs-section,.hljs-selector-id {
+  color: #202020;
+  font-weight: 700;
+}
+
+.hljs-type,.hljs-class .hljs-title {
+  color: #555555;
+  font-weight: 700;
+}

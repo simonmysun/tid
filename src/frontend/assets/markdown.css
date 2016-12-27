@@ -1,0 +1,146 @@
+@import './cm-fonts/all.fonts.css';
+
+.markdown {
+  max-width: 42em;
+  padding: 1em;
+  margin: 4em auto;
+  background: #ffffff;
+  font-size: 1.3em;
+  font-family: 'Computer Modern Serif';
+  line-height: 1.4;
+  min-height: 400px;
+}
+
+.markdown > p {
+  /* text-indent: 2em; */
+}
+
+.markdown video {
+  margin: 2em 0;
+  border: 1px solid #ddd;
+}
+
+.markdown img {
+  margin: 0.5em auto;
+  max-height: calc(49vh - 1em);
+  max-width: calc(49% - 1em);
+}
+
+.markdown table {
+  margin: 0 -1rem 1rem -1rem;
+  width: calc(102%);
+  overflow: hidden;
+  border-collapse: collapse;
+}
+.markdown table caption {
+  padding-top: 0.5rem;
+  border-top: 1px solid #eee;
+  caption-side: bottom;
+  text-align: center;
+  font-style: italic;
+  color: #666;
+}
+.markdown tr {
+  transition: 0.15s;
+}
+.markdown thead tr {
+  border-bottom: 2px solid #888;
+}
+.markdown tfoot tr {
+  border-bottom: none;
+  border-top: 1px solid #eee;
+  font-weight: bolder;
+}
+.markdown tbody tr,
+.markdown tfoot tr {
+  transition: all 0.3s;
+}
+.markdown tbody tr:hover,
+.markdown tfoot tr:hover {
+  background-color: #f7f7f7; 
+}
+.markdown td,
+.markdown th {
+  position: relative;
+  padding: 0.3rem 1rem;
+}
+.markedown th {
+  font-weight: bolder;
+}
+.markdown tbody tr:first-of-type td,
+.markdown tbody tr:first-of-type th {
+  padding-top: 0.5rem;
+}
+
+.markdown .emoji {
+  height: 1.3em;
+  margin: 0 0 -0.1em 0;
+}
+
+.markdown pre,
+.markdown code {
+  font-family: 'Computer Modern Typewriter Light';
+}
+
+.markdown a {
+  color: #2484c1;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0);
+  transition: border-bottom 0.3s;
+}
+.markdown a:hover {
+  border-bottom: 1px solid #2484c1;
+}
+.markdown a img {
+  border: none;
+}
+
+.markdown hr {
+  color: #ddd;
+  height: 1px;
+  margin: 2em 0;
+  border-top: solid 1px #ddd;
+  border-bottom: none;
+  border-left: 0;
+  border-right: 0;
+}
+
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6 {
+  /* font-family: 'Computer Modern Sans'; */
+}
+
+.markdown blockquote {
+  border-left: 4px solid #e6e6e6;
+  margin: 0;
+  padding: 0.5em 0 0.1em 40px;
+  font-family: 'Computer Modern Concrete';
+  color: #444;
+}
+
+.markdown .markdownIt-TOC {
+  display: inline-block;
+  border: 1px solid #ccc;
+  padding: 1em 2em;
+}
+
+.markdown .update-mark {
+  animation: update-mark-fade-out 5s 1;
+  animation-timing-function: ease-in;
+  box-sizing: border-box;
+}
+
+@keyframes update-mark-fade-out {
+  from {
+    border-top: 1px solid #000;
+    border-right: 1px solid #000;
+  }
+  to {
+    border-top: 1px solid #fff;
+    border-right: 1px solid #fff;
+  }
+}

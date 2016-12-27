@@ -1,0 +1,14 @@
+{
+    "ignore": [
+        "./node_modules/*",
+        "./static/*",
+        "./lib/*",
+        "*~"
+    ],
+    "watch": [
+        "./build/",
+        "./src/",
+        "./bin/"
+    ],
+    "verbose": true
+}

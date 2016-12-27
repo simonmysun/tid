@@ -1,7 +1,14 @@
 #!/usr/bin/env node
 
 var program = require('commander');
+var portfinder = require('portfinder');
+var open = require('open');
 var fs = require('fs');
+var path = require('path');
+
+console.log('Initializing... ');
+var server = require('./../src/backend/server');
+
 program.version('0.0.2')
     .description('Take It Down - yet another browser based "editor"')
     .option('-B, --no-browser', 'do not start browser after the service started. defaults to true')
@@ -16,25 +23,25 @@ if(program.chdir && !fs.lstatSync(program.chdir).isDirectory()) {
     process.exit(1);
 }
 
-if(program.port && !(/^\+?(0|[1-9]\d*)$/.test(program.port) && parseInt(program.port) > 0 && parseInt(program.port) < 65535)) {
+if(program.port && !(/^\+?(0|[1-9]\d*)$/.test(program.port) && parseInt(program.port, 10) > 0 && parseInt(program.port, 10) < 65535)) {
     console.error('Illegal port: Please input a port number between 0 and 65535(root access required if port number less than 1024).');
     process.exit(1);
 }
 
-var portfinder = require('portfinder');
-portfinder.basePort = parseInt(program.port) || 3000;
-portfinder.getPort(function (err, port) {
-    if(program.port && port !== parseInt(program.port)) {
-        console.info(`Port ${program.port} is already in use. Using ${port} instead. `);
+portfinder.basePort = parseInt(program.port, 10) || 3000;
+portfinder.getPort(function(err, port) {
+    if(program.port && port !== portfinder.basePort) {
+        console.info('Port ' + program.port + ' is already in use. Using ' + port + ' instead. ');
     }
     var options = {
-        targetPath:  program.chdir || process.cwd(),
+        targetPath: path.resolve(program.chdir || '.') || process.cwd(),
         port: port || 3000
     };
-    require('./../lib/server.js').start(options, function() {
+
+    server.start(options, function() {
         if(program.browser) {
-            var open = require('open');
-            open('http://localhost:' + options.port + '/');;
+            console.log('Starting browser');
+            open(`http://localhost:${options.port}/`);
         }
     });
 });

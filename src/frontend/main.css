@@ -1,0 +1,9 @@
+@import './assets/markdown.css';
+@import './assets/hljs-mono.css';
+@import './assets/media.css';
+@import './assets/codes.css';
+
+html, body {
+  padding: 0;
+  margin: 0;
+}
