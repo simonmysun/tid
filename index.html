@@ -156,7 +156,7 @@ Modify them and see what happens! \n';
        }
        window.localStorage.setItem('__broadcast', JSON.stringify({path: path, content: editor.getValue()}));
      }, 300, 1000, function() {}, function() {}));
-     document.getElementById('preview-iframe').src = './_viewer.html#' + path;
+     document.getElementById('preview-iframe').src = './viewer.html#' + path;
      document.getElementById('preview-iframe').onload = function() {
        window.localStorage.setItem('__broadcast', JSON.stringify({path: path, content: editor.getValue()}));
      };
