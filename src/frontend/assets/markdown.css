@@ -13,7 +13,21 @@
 
 .markdown > p {
   /* text-indent: 2em; */
+}
+
+
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6,
+.markdown p {
+  hyphens: auto;
   word-wrap: break-word;
+  overflow-wrap: break-word;
+  font-kerning: normal;
+  text-align: justify;
 }
 
 .markdown video {
