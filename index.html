@@ -1,295 +1,181 @@
-
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Demo of tid</title>
-        <script type="text/javascript">
-          if ((window.location.hostname != 'localhost') && (window.location.protocol != "https:")) {
-            window.location.protocol = "https";
-          }
-        </script>
-    </head>
-    <body>
-        <div id="config"><a href="#" class="btn" id="btn-save">SAVE</a><a href="#" class="btn" id="btn-update">PREVIEW</a> Markdown Parsing Time: <span id="markdown-time">0</span>ms. Mathjax Parse Time: <span id='mathjax-time'>0</span>ms. Scroll Preview Generating time <span id='thumbnail-time'>0</span>ms. </div>
-        <div id="wrapper">
-            <div id="source" class="content split split-horizontal"># Markdown Test
-*This document is forked from [here](https://github.com/markdown-it/markdown-it.github.io).*
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TID</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.22.0/codemirror.css">
+    <style>
+     .split {
+       -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+       box-sizing: border-box;
 
-This is a demo page of **[tid](https://github.com/simonmysun/tid)** software at version 0.0.2. This page may be out of date. With locally installed you can experience creating, updating files and faster loading, etc. 
+       overflow-y: auto;
+       overflow-x: hidden;
+     }
 
-&lt;!-- advertisement -->
-&lt;div>&lt;a href="https://github.com/simonmysun/tid" style="font-size:300%;background-image:-webkit-gradient(linear,left top,right top,color-stop(0,#f22),color-stop(0.15,#f2f),color-stop(0.3,#22f),color-stop(0.45,#2ff),color-stop(0.6,#2f2),color-stop(0.75,#2f2),color-stop(0.9,#ff2),color-stop(1,#f22));background-image:gradient(linear,left top,right top,color-stop(0,#f22),color-stop(0.15,#f2f),color-stop(0.3,#22f),color-stop(0.45,#2ff),color-stop(0.6,#2f2),color-stop(0.75,#2f2),color-stop(0.9,#ff2),color-stop(1,#f22));color:transparent!important;-webkit-background-clip:text;background-clip:text">CLICK FOR MORE DETAILS&lt;/a>&lt;/div>
+     .gutter {
+       background-color: #f6f6f6;
 
-## Headings
-# h1 Heading 8-)
-## h2 Heading
-### h3 Heading
-#### h4 Heading
-##### h5 Heading
-###### h6 Heading
-```markdown
-# h1 Heading 8-)
-## h2 Heading
-### h3 Heading
-#### h4 Heading
-##### h5 Heading
-###### h6 Heading
-```
-## Horizontal Rules
-___
----
-***
-```markdown
-___
----
-***
-```
+       background-repeat: no-repeat;
+       background-position: 50%;
+     }
 
-## Typographic replacements
-(c) (C) (r) (R) (tm) (TM) (p) (P) +-
+     .gutter.gutter-horizontal {
+       background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=');
+       cursor: ew-resize;
+     }
 
-test.. test... test..... test?..... test!....
+     .gutter.gutter-vertical {
+       background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==');
+       cursor: ns-resize;
+     }
 
-!!!!!! ???? ,,  -- ---
+     .split.split-horizontal, .gutter.gutter-horizontal {
+       height: 100%;
+       float: left;
+     }
 
-&quot;Smartypants, double quotes&quot; and &#39;single quotes&#39;
+     .content {
+       border: 1px solid #C0C0C0;
+       background-color: #fff;
+     }
+     
+     #config {
+       color: #777;
+       position: absolute;
+       top: 0;
+       right: 0;
+       bottom: auto;
+       left: 0;
+       height: 30px;
+       background: #f6f6f6;
+     }
 
+     .btn {
+       margin: 3px 5px auto 5px;
+       display: inline-block;
+       background: #fff;
+       color: #777;
+       text-decoration: none;
+       border: 1px solid #c0c0c0;
+       padding: 2px 5px;
+     }
 
-```markdown
-(c) (C) (r) (R) (tm) (TM) (p) (P) +-
+     #wrapper {
+       position: absolute;
+       top: 30px;
+       right: 0;
+       bottom: 0;
+       left: 0;
+     }
 
-test.. test... test..... test?..... test!....
-
-!!!!!! ???? ,,  -- ---
-
-&quot;Smartypants, double quotes&quot; and &#39;single quotes&#39;
-```
-
-## Emphasis
-This is **bold** and this is *italic*.
-This is __bold__ and this is _italic_.
-~~Strikethrough~~
-```markdown
-This is **bold** and this is *italic*.
-This is __bold__ and this is _italic_.
-~~Strikethrough~~
-```
-## Blockquotes
-&gt; Blockquotes can also be nested...
-&gt;&gt; ...by using additional greater-than signs right next to each other...
-&gt; &gt; &gt; ...or with spaces between arrows.
-
-```markdown
-&gt; Blockquotes can also be nested...
-&gt;&gt; ...by using additional greater-than signs right next to each other...
-&gt; &gt; &gt; ...or with spaces between arrows.
-```
-
-## Lists
-### Unordered
-+ Create a list by starting a line with `+`, `-`, or `*`
-+ Sub-lists are made by indenting 2 spaces:
-  - Marker character change forces new list start:
-    * Ac tristique libero volutpat at
-    + Facilisis in pretium nisl aliquet
-    - Nulla volutpat aliquam velit
-+ Very easy!
-```markdown
-+ Create a list by starting a line with `+`, `-`, or `*`
-+ Sub-lists are made by indenting 2 spaces:
-  - Marker character change forces new list start:
-    * Ac tristique libero volutpat at
-    + Facilisis in pretium nisl aliquet
-    - Nulla volutpat aliquam velit
-+ Very easy!
-```
-### Ordered
-1. Lorem ipsum dolor sit amet
-2. Consectetur adipiscing elit
-3. Integer molestie lorem at massa
-1. You can use sequential numbers...
-1. ...or keep all the numbers as `1.`
-
-Start numbering with offset:
-
-57. foo
-1. bar
-
-```markdown
-1. Lorem ipsum dolor sit amet
-2. Consectetur adipiscing elit
-3. Integer molestie lorem at massa
-1. You can use sequential numbers...
-1. ...or keep all the numbers as `1.`
-
-Start numbering with offset:
-
-57. foo
-1. bar
-```
-
-## Code
-Inline `code`. 
-Syntax highlighting with the help of [Highlight.js](https://highlightjs.org/). 
-Now it supports 168 languages. 
-```c++
-#include &lt;iostream&gt;
-int main() {
-	std::cout &lt;&lt; &quot;Hello, world!\n&quot;;
-}
-```
-```haskell
-primes = filterPrime [2..] 
-  where filterPrime (p:xs) = 
-          p : filterPrime [x | x &lt;- xs, x `mod` p /= 0]
-```
-&lt;pre class=&quot;hljs&quot;&gt;
-Inline `code`. 
-Syntax highlighting with the help of [Highlight.js](https://highlightjs.org/). 
-ow support 168 languages. 
-
-```c++
-#include &lt;iostream&gt;
-int main() {
-	std::cout &lt;&lt; &quot;Hello, world!\n&quot;;
-}
-```
-
-```haskell
-primes = filterPrime [2..] 
-  where filterPrime (p:xs) = 
-          p : filterPrime [x | x &lt;- xs, x `mod` p /= 0]
-```
-&lt;/pre&gt;
-
-## Tables
-Table with alignment support: 
-Option | Description 
-:----: | :---------:
-data   | path to data files to supply the data that will be passed into templates. 
-engine | engine to be used for processing templates. Handlebars is the default. 
-ext    | extension to be used for dest files.
-
-| Option | Description |
-| -----: | :---------- |
-| data   | path to data files to supply the data that will be passed into templates. |
-| engine | engine to be used for processing templates. Handlebars is the default. |
-| ext    | extension to be used for dest files. |
-
-```markdown
-Table with alignment support: 
-Option | Description 
-:----: | :---------:
-data   | path to data files to supply the data that will be passed into templates. 
-engine | engine to be used for processing templates. Handlebars is the default. 
-ext    | extension to be used for dest files.
-
-| Option | Description |
-| -----: | :---------- |
-| data   | path to data files to supply the data that will be passed into templates. |
-| engine | engine to be used for processing templates. Handlebars is the default. |
-| ext    | extension to be used for dest files. |
-```
-
-## Links
-[link text](http://dev.nodeca.com)
-
-[link with title](http://nodeca.github.io/pica/demo/ &quot;title text!&quot;)
-
-This is [an example][link id] reference-style link.
-
-[link id]: http://example.com/  &quot;Optional Title Here&quot;
-
-Autoconverted link https://github.com/nodeca/pica (enable linkify to see)
-
-```markdown
-[link text](http://dev.nodeca.com)
-
-[link with title](http://nodeca.github.io/pica/demo/ &quot;title text!&quot;)
-
-This is [an example][link id] reference-style link.
-
-[link id]: http://example.com/  &quot;Optional Title Here&quot;
-
-Autoconverted link https://github.com/nodeca/pica (enable linkify to see)
-```
-
-## Images
-![Minion](https://octodex.github.com/images/minion.png)
-![Stormtroopocat](https://octodex.github.com/images/stormtroopocat.jpg &quot;The Stormtroopocat&quot;)
-
-Like links, Images also have a footnote style syntax
-
-![Alt text][pic id]
-
-With a reference later in the document defining the URL location:
-
-[pic id]: https://octodex.github.com/images/dojocat.jpg  &quot;The Dojocat&quot;
-
-```markdown
-![Minion](https://octodex.github.com/images/minion.png)
-![Stormtroopocat](https://octodex.github.com/images/stormtroopocat.jpg &quot;The Stormtroopocat&quot;)
-
-Like links, Images also have a footnote style syntax
-
-![Alt text][pic id]
-
-With a reference later in the document defining the URL location:
-
-[pic id]: https://octodex.github.com/images/dojocat.jpg  &quot;The Dojocat&quot;
-```
-
-## Plugins
-### MathJax
-Write $\LaTeX$ formulas as inline, $x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$, or as block: $$f:X\rightarrow Y\text{ is continuous}\iff\forall\mathcal{O}\in\mathcal{O}_Y:f^{-1}\left(\mathcal{O}\right)\in\mathcal{O}_X$$
-
-```TeX
-Write $\LaTeX$ formulas as inline, $x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$, or as block: $$f:X\rightarrow Y\text{ is continuous}\iff\forall\mathcal{O}\in\mathcal{O}_Y:f^{-1}\left(\mathcal{O}\right)\in\mathcal{O}_X$$
-```
-
-### Emojies
-&gt; Classic markup: :wink: :crush: :cry: :tear: :laughing: :yum:
-&gt;
-&gt; Shortcuts (emoticons): :-) :-( 8-) ;)
-&gt;
-&gt; Unicode: 😀😂😱❤
-
-### Table of content
-[[TOC]]
-```markdown
-[[TOC]]
-```
-
-### Subscript / Superscrip
-- 19^th^
-- H~2~O
-```makrdown
-19^th^
-- H~2~O
-```
-
-### Footnotes
-Footnote 1 link[^first]. Footnote 2 link[^second]. Inline footnote^[Text of inline footnote] definition. Duplicated footnote reference[^second].
-
-[^first]: Footnote **can have markup**
-
-    and multiple paragraphs.
-[^second]: Footnote text.
-
-```
-Footnote 1 link[^first]. Footnote 2 link[^second]. Inline footnote^[Text of inline footnote] definition. Duplicated footnote reference[^second].
-
-[^first]: Footnote **can have markup**
-
-    and multiple paragraphs.
-[^second]: Footnote text.
-```
-</div>
-            <div id="preview" class="content split split-horizontal"><div class="marked" id="preview-content"></div></div>
-            <div id="scroll-thumb" class="noselect"><img id="scroll-thumb-img"><div id="preview-viewport"></div></div>
-        </div>
-        <div id="noti"></div>
-        <script type="text/javascript" src="./assets/mathjax.js/unpacked/MathJax.js?config=default"></script>
-        <script type="text/javascript" src="./assets/scripts.js" charset="utf-8"></script>
-    </body>
+     #codemirror, #preview, #preview-iframe, .CodeMirror {
+       height: 100%;
+       width: 100%;
+     }
+    </style>
+  </head>
+  <body>
+    <div id="config">
+      <a href="#" class="btn" id="btn-save">SAVE</a>
+    </div>
+    <div id="wrapper">
+      <div id="codemirror" class="content split split-horizontal"></div>
+      <div id="preview" class="content split split-horizontal">
+        <iframe id="preview-iframe" frameborder="0"></iframe>
+      </div>
+    </div>
+    <script src="//nathancahill.github.io/Split.js/split.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.22.0/codemirror.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.22.0/addon/mode/loadmode.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.22.0/mode/meta.js"></script>
+    <script type="text/javascript" charset="utf-8">
+     var path = '/_demo.md';
+     var demoText = '# Tid Test\n\
+\n\
+This is a demo page of **[tid](https://github.com/simonmysun/tid)** software at version 0.0.7. This page may be out of date. With locally installed you can experience creating, updating files and faster loading, etc. \n\
+\n\
+<!-- advertisement -->\n\
+<p><a href="https://github.com/simonmysun/tid" style="font-size:120%;background-image:-webkit-gradient(linear,left top,right top,color-stop(0,#f22),color-stop(0.15,#f2f),color-stop(0.3,#22f),color-stop(0.45,#2ff),color-stop(0.6,#2f2),color-stop(0.75,#2f2),color-stop(0.9,#ff2),color-stop(1,#f22));background-image:gradient(linear,left top,right top,color-stop(0,#f22),color-stop(0.15,#f2f),color-stop(0.3,#22f),color-stop(0.45,#2ff),color-stop(0.6,#2f2),color-stop(0.75,#2f2),color-stop(0.9,#ff2),color-stop(1,#f22));color:transparent!important;-webkit-background-clip:text;background-clip:text">CLICK FOR MORE DETAILS</a></p>\n\
+\n\
+Let\'s try some real time $\TeX$ rendering: \n\
+\n\
+When $a \\ne 0$, there are two solutions to $ax^2 + bx + c = 0$ and they are $$x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}.$$\n\
+\n\
+Modify them and see what happens! \n';
+     Split(['#codemirror', '#preview'], {
+       sizes: [29, 71],
+       minSize: 200
+     });
+     var editor = CodeMirror(document.getElementById('codemirror'), {
+       value: demoText,
+       lineNumbers: true,
+       lineWrapping: true
+     });
+     CodeMirror.modeURL = '//cdnjs.cloudflare.com/ajax/libs/codemirror/5.22.0/mode/%N/%N.js';
+     var mode;
+     var spec;
+     var info = CodeMirror.findModeByExtension(path.split('.').pop().toLowerCase());
+     if (info) {
+       mode = info.mode;
+       spec = info.mime;
+     }
+     if (mode) {
+       editor.setOption('mode', spec);
+       CodeMirror.autoLoadMode(editor, mode);
+     } else {
+       console.log('Could not find a mode corresponding to ' + val);
+     }
+     editor.on('change', (function(callback, delay, maxDelay, init, destroy) {
+       var timer = null;
+       var startTime;
+       return function () {
+         var context = this;
+         var args = arguments;
+         var currentTime = new Date().getTime();
+         clearTimeout(timer);
+         if (!startTime) {
+           startTime = currentTime;
+           init();
+         } else if (currentTime - startTime >= maxDelay) {
+           callback.apply(context, args);
+           startTime = currentTime;
+         }
+         timer = setTimeout(function () {
+           callback.apply(context, args);
+           startTime = null;
+           destroy();
+         }, delay);
+       }
+     })(function(editor, change) {
+       if (change.origin === 'setValue') {
+         console.log('Aborted');
+         return; 
+       }
+       window.localStorage.setItem('__broadcast', JSON.stringify({path: path, content: editor.getValue()}));
+     }, 300, 1000, function() {}, function() {}));
+     document.getElementById('preview-iframe').src = '/_viewer.html#' + path;
+     document.getElementById('preview-iframe').onload = function() {
+       window.localStorage.setItem('__broadcast', JSON.stringify({path: path, content: editor.getValue()}));
+     };
+     document.getElementById('btn-save').addEventListener('click', function() {
+       alert('NOT IMPLEMENTED!');
+     });
+     window.addEventListener('storage', (event) => {
+       if (event.key === '__broadcast') {
+         if (event.newValue !== null) {
+           const data = JSON.parse(event.newValue);
+           if (data.path === path) {
+             if(editor.getValue() !== data.content) {
+               editor.setValue(data.content);
+             }
+             window.localStorage.removeItem('__broadcast');
+           }
+         }
+       }
+     });
+    </script>
+  </body>
 </html>
