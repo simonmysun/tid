@@ -1,0 +1,179 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TID</title>
+    <link rel="stylesheet" href="_/codemirror/lib/codemirror.css">
+    <style>
+     .split {
+       -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+       box-sizing: border-box;
+
+       overflow-y: auto;
+       overflow-x: hidden;
+     }
+
+     .gutter {
+       background-color: #f6f6f6;
+
+       background-repeat: no-repeat;
+       background-position: 50%;
+     }
+
+     .gutter.gutter-horizontal {
+       background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=');
+       cursor: ew-resize;
+     }
+
+     .gutter.gutter-vertical {
+       background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==');
+       cursor: ns-resize;
+     }
+
+     .split.split-horizontal, .gutter.gutter-horizontal {
+       height: 100%;
+       float: left;
+     }
+
+     .content {
+       border: 1px solid #C0C0C0;
+       background-color: #fff;
+     }
+     
+     #config {
+       color: #777;
+       position: absolute;
+       top: 0;
+       right: 0;
+       bottom: auto;
+       left: 0;
+       height: 30px;
+       background: #f6f6f6;
+     }
+
+     .btn {
+       margin: 3px 5px auto 5px;
+       display: inline-block;
+       background: #fff;
+       color: #777;
+       text-decoration: none;
+       border: 1px solid #c0c0c0;
+       padding: 2px 5px;
+     }
+
+     #wrapper {
+       position: absolute;
+       top: 30px;
+       right: 0;
+       bottom: 0;
+       left: 0;
+     }
+
+     #codemirror, #preview, #preview-iframe, .CodeMirror {
+       height: 100%;
+       width: 100%;
+     }
+    </style>
+  </head>
+  <body>
+    <div id="config">
+      <a href="#" class="btn" id="btn-save">SAVE</a>
+    </div>
+    <div id="wrapper">
+      <div id="codemirror" class="content split split-horizontal"></div>
+      <div id="preview" class="content split split-horizontal">
+        <iframe id="preview-iframe" frameborder="0"></iframe>
+      </div>
+    </div>
+    <script src="/_/Split.js/split.min.js"></script>
+    <script src="/_/qwest/qwest.min.js"></script>
+    <script src="/_/codemirror/lib/codemirror.js"></script>
+    <script src="/_/codemirror/addon/mode/loadmode.js"></script>
+    <script src="/_/codemirror/mode/meta.js"></script>
+    <script type="text/javascript" charset="utf-8">
+     if (location.hash.length < 2) {
+       location.href = '/';
+     }
+     var path = decodeURI(location.hash.slice(1));
+     var content = null;
+     qwest
+     .get(path + '?raw=true')
+     .then(function(xhr, response) {
+       content = response;
+     }).catch(function(e, xhr, response) {
+       content = '<!-- Create a new file? -->';
+     }).complete(function() {
+       var editor = CodeMirror(document.getElementById('codemirror'), {
+         value: content,
+         lineNumbers: true,
+         lineWrapping: true
+       });
+       CodeMirror.modeURL = '/_/codemirror/mode/%N/%N.js';
+       var mode;
+       var spec;
+       var info = CodeMirror.findModeByExtension(path.split('.').pop().toLowerCase());
+       if (info) {
+         mode = info.mode;
+         spec = info.mime;
+       }
+       if (mode) {
+         editor.setOption('mode', spec);
+         CodeMirror.autoLoadMode(editor, mode);
+       } else {
+         console.log('Could not find a mode corresponding to ' + val);
+       }
+       editor.on('change', (function(callback, delay, maxDelay, init, destroy) {
+         var timer = null;
+         var startTime;
+         return function () {
+           var context = this;
+           var args = arguments;
+           var currentTime = new Date().getTime();
+           clearTimeout(timer);
+           if (!startTime) {
+             startTime = currentTime;
+             init();
+           } else if (currentTime - startTime >= maxDelay) {
+             callback.apply(context, args);
+             startTime = currentTime;
+           }
+           timer = setTimeout(function () {
+             callback.apply(context, args);
+             startTime = null;
+             destroy();
+           }, delay);
+         }
+       })(function(editor, change) {
+         if (change.origin === 'setValue') {
+           console.log('Aborted');
+           return; 
+         }
+         window.localStorage.setItem('__broadcast', JSON.stringify({path: path, content: editor.getValue()}));
+       }, 300, 1000, function() {}, function() {}));
+     });;
+     Split(['#codemirror', '#preview'], {
+       sizes: [29, 71],
+       minSize: 200
+     });
+     document.getElementById('preview-iframe').src = '/_viewer.html#' + path;
+     document.getElementById('btn-save').addEventListener('click', function() {
+       alert('NOT IMPLEMENTED!');
+     });
+     window.addEventListener('storage', (event) => {
+       if (event.key === '__broadcast') {
+         if (event.newValue !== null) {
+           const data = JSON.parse(event.newValue);
+           if (data.path === path) {
+             if(editor.getValue() !== data.content) {
+               editor.setValue(data.content);
+             }
+             window.localStorage.removeItem('__broadcast');
+           }
+         }
+       }
+     });
+    </script>
+  </body>
+</html>

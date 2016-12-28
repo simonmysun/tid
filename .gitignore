@@ -1,3 +1,4 @@
-node_modules/
-static/
-test/
+/node_modules/*
+/static/*
+/test/*
+npm-debug.log
