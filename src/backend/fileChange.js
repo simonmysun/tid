@@ -55,7 +55,9 @@ module.exports = {
     })(id));
   },
   removeListener: function(id) {
-    fileChangeEventHandlers[id].watcher.close();
+    if (fileChangeEventHandlers[id].watcher) {
+      fileChangeEventHandlers[id].watcher.close();
+    }
     delete fileChangeEventHandlers[id];
   },
   forceUpdate: function(id) {
