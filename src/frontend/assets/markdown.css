@@ -13,6 +13,7 @@
 
 .markdown > p {
   /* text-indent: 2em; */
+  word-wrap: break-word;
 }
 
 .markdown video {

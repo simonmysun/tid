@@ -45,3 +45,15 @@ socket.on('update', (data) => {
       break;
   }
 });
+
+window.addEventListener('storage', (event) => {
+  if (event.key === '__broadcast') {
+    if (event.newValue !== null) {
+      const data = JSON.parse(event.newValue);
+      if (data.path === decodeURI(location.hash.slice(1))) {
+        renderer.render(data.content, data.path);
+        window.localStorage.removeItem('__broadcast');
+      }
+    }
+  }
+});

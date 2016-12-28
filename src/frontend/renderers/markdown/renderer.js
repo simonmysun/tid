@@ -51,6 +51,7 @@ const trueRender = (source) => {
   [...document.getElementsByClassName('update-mark')].forEach((node) => {
     node.classList.remove('update-mark');
   });
+  lastUpdatedDom = null;
   timestamp.push(performance.now());
   const result = md.render(source);
   timestamp.push(performance.now());
@@ -61,20 +62,21 @@ const trueRender = (source) => {
   timestamp.push(performance.now());
   targetDom = updateDom.update(targetDom, newDom);
   timestamp.push(performance.now());
-  while (lastUpdatedDom.nodeType !== 1) {
-    if (lastUpdatedDom.parentNode) {
-      lastUpdatedDom = lastUpdatedDom.parentNode;
-    } else {
-      console.log('???');
-      return;
+  if (lastUpdatedDom !== null) {
+    while (lastUpdatedDom.nodeType !== 1) {
+      if (lastUpdatedDom.parentNode) {
+        lastUpdatedDom = lastUpdatedDom.parentNode;
+      } else {
+        console.log('???');
+        return;
+      }
     }
-  }
-  void lastUpdatedDom.offsetWidth; // eslint-disable-line
-  lastUpdatedDom.classList.add('update-mark');
-  MathJax.Hub.Queue(['Typeset', MathJax.Hub, targetDom]);
-  scrollToElement(lastUpdatedDom);
-  MathJax.Hub.Queue(() => {
+    void lastUpdatedDom.offsetWidth; // eslint-disable-line
+    lastUpdatedDom.classList.add('update-mark');
     scrollToElement(lastUpdatedDom);
+  }
+  MathJax.Hub.Queue(['Typeset', MathJax.Hub, targetDom]);
+  MathJax.Hub.Queue(() => {
     timestamp.push(performance.now());
     console.log('parse -> new dom -> patch -> mathjax');
     console.log(timestamp.map((item, key, arr) => arr[key] - arr[key - 1])

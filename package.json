@@ -1,21 +1,37 @@
 {
   "name": "tid",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "Take It Down - yet another browser based \"editor\"",
   "bin": {
-    "tid": "bin/tid.js"
+    "tid": "bin/tid"
   },
-  "main": "bin/tid.js",
+  "main": "bin/tid",
   "scripts": {
     "dev": "nodemon --config './build/nodemon.json' -x 'bash ./build/build_and_serve.sh'",
     "build": "bash ./build/build.sh",
-    "serve": "node ./bin/tid.js -B -C ./test",
-    "serve-dev": "node --inspect ./bin/tid.js -B -C ./test",
+    "serve": "node ./bin/tid -B -C ./test",
+    "serve-dev": "node --inspect ./bin/tid -B -C ./test",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublish": "npm run build"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simonmysun/tid.git"
+  },
+  "keywords": [
+    "editor",
+    "markdown",
+    "mathjax",
+    "realtime"
+  ],
   "author": "MY Sun <simonmysun@gmail.com> (https://simonmysun.github.io/)",
   "license": "MIT",
+  "keywords": [
+    "editor",
+    "markdown",
+    "mathjax"
+  ],
+  "homepage": "https://github.com/simonmysun/tid#readme",
   "dependencies": {
     "chokidar": "^1.6.1",
     "commander": "^2.9.0",
@@ -32,7 +48,6 @@
     "babel-preset-es2015-node": "^6.1.1",
     "babel-preset-latest": "^6.16.0",
     "css-loader": "^0.26.1",
-    "diff-dom": "^2.1.0",
     "escape-html": "^1.0.3",
     "eslint": "^3.11.1",
     "eslint-config-airbnb-base": "^10.0.1",
@@ -43,13 +58,11 @@
     "highlight.js": "^9.8.0",
     "json-loader": "^0.5.4",
     "markdown-it": "^8.2.1",
-    "markdown-it-anchor": "^2.6.0",
     "markdown-it-emoji": "^1.3.0",
     "markdown-it-footnote": "^3.0.1",
     "markdown-it-mathjax": "^2.0.0",
     "markdown-it-sub": "^1.0.0",
     "markdown-it-sup": "^1.0.0",
-    "markdown-it-table-of-contents": "^0.3.1",
     "markdown-it-toc-and-anchor": "^4.1.1",
     "nodemon": "^1.11.0",
     "scroll-to": "0.0.2",

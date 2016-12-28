@@ -4,7 +4,7 @@ module.exports = [
       './src/frontend/main.js'
     ],
     output: {
-      filename: './static/scripts.js'
+      filename: './static/_scripts.js'
     },
     devtool: 'source-map',
     module: {

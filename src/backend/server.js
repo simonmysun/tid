@@ -24,7 +24,7 @@ module.exports = {
         return ;
       }
       if(req.get('Accept')[0] === 't') { // Tricky and not reliable
-        res.redirect('/viewer.html#' + req.path);
+        res.redirect('/_viewer.html#' + req.path);
         return ;
       }
       nxt();
