@@ -99,7 +99,7 @@
      var editor = null;
      var override = undefined;
      if (isDemo) {
-       path = '/_example.md';
+       path = './_example.md';
      } else {
        if (location.hash.length < 2) {
          location.href = '/';
@@ -184,7 +184,7 @@
        }
      });
      
-     document.getElementById('preview-iframe').src = '/viewer.html#' + path;
+     document.getElementById('preview-iframe').src = './viewer.html#' + path;
      document.getElementById('btn-save').addEventListener('click', function() {
        alert('NOT IMPLEMENTED!');
      });
