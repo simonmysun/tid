@@ -1,6 +1,6 @@
 {
   "name": "tid",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Take It Down - yet another browser based \"editor\"",
   "bin": {
     "tid": "bin/tid"

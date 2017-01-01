@@ -93,19 +93,20 @@
     <script src="/_/codemirror/addon/mode/loadmode.js"></script>
     <script src="/_/codemirror/mode/meta.js"></script>
     <script type="text/javascript" charset="utf-8">
-     if (location.hash.length < 2) {
-       location.href = '/';
-     }
-     var path = decodeURI(location.hash.slice(1));
+     var isDemo = false;
      var content = null;
-     qwest
-     .get(path + '?raw=true')
-     .then(function(xhr, response) {
-       content = response;
-     }).catch(function(e, xhr, response) {
-       content = '<!-- Create a new file? -->';
-     }).complete(function() {
-       var editor = CodeMirror(document.getElementById('codemirror'), {
+     var path = decodeURI(location.hash.slice(1));
+     var editor = null;
+     var override = undefined;
+     if (isDemo) {
+       path = '/_example.md';
+     } else {
+       if (location.hash.length < 2) {
+         location.href = '/';
+       }
+     }
+     var init = function() {
+       editor = CodeMirror(document.getElementById('codemirror'), {
          value: content,
          lineNumbers: true,
          lineWrapping: true
@@ -146,30 +147,63 @@
            }, delay);
          }
        })(function(editor, change) {
-         if (change.origin === 'setValue') {
-           console.log('Aborted');
-           return; 
+         if (change.origin !== 'setValue') {
+           window.localStorage.setItem('__broadcast', JSON.stringify({path: path, content: editor.getValue()}));
          }
-         window.localStorage.setItem('__broadcast', JSON.stringify({path: path, content: editor.getValue()}));
        }, 300, 1000, function() {}, function() {}));
-     });;
+     };
+     if (isDemo) {
+       qwest
+         .get('./_example.md')
+         .then(function(xhr, response) {
+           content = response;
+         })
+         .catch(function(e, xhr, response) {
+           console.error(e, xhr, response);
+         }).complete(init);
+       window.onmessage = (e) => {
+         if (e.data === 'ready') {
+           window.localStorage.setItem('__broadcast', JSON.stringify({path: path, content: editor.getValue()}));
+         }
+       }
+     } else {
+       qwest
+         .get(path + '?raw=true')
+         .then(function(xhr, response) {
+           content = response;
+         })
+         .catch(function(e, xhr, response) {
+           content = '<!-- Create a new file? -->';
+         }).complete(init);
+     }
      Split(['#codemirror', '#preview'], {
        sizes: [29, 71],
-       minSize: 200
+       minSize: 200,
+       onDragEnd: function () {
+         window.dispatchEvent(new Event('resize'));
+       }
      });
+     
      document.getElementById('preview-iframe').src = '/_viewer.html#' + path;
      document.getElementById('btn-save').addEventListener('click', function() {
        alert('NOT IMPLEMENTED!');
      });
-     window.addEventListener('storage', (event) => {
+     window.addEventListener('storage', function(event) {
        if (event.key === '__broadcast') {
          if (event.newValue !== null) {
            const data = JSON.parse(event.newValue);
            if (data.path === path) {
-             if(editor.getValue() !== data.content) {
-               editor.setValue(data.content);
+             if (override === undefined) {
+               override = confirm(`Another editor has started and modified its content. Shall we override it? (Will not ask again for this session) \n\nSelect 'Ok' to override, or 'cancel' to keep updated. \n\nNote: opening duplicated editors is not a good choice. `);
              }
-             window.localStorage.removeItem('__broadcast');
+             if (override) {
+               window.localStorage.setItem('__broadcast', JSON.stringify({path: path, content: editor.getValue()}));
+             } else {
+               if(editor.getValue() !== data.content) {
+                 editor.setValue(data.content);
+               }
+               window.localStorage.removeItem('__broadcast');
+             }
            }
          }
        }

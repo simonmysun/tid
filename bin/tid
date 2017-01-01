@@ -7,13 +7,14 @@ var fs = require('fs');
 var path = require('path');
 var server = require('./../src/backend/server');
 
-program.version('0.0.2')
+program.version('0.0.10')
     .description('Take It Down - yet another browser based "editor"')
     .option('-B, --no-browser', 'do not start browser after the service started. defaults to true')
-    .option('-C, --chdir [path]', 'change the working directory, defaults to current directory')
-    .option('-c, --config [path]', 'set config path. defaults to ./deploy.conf')
+    .option('-C, --chdir [path]', 'change the working directory (the default is current directory')
+    // .option('-c, --config [path]', 'set config path. defaults to ./deploy.conf')
     .option('-P, --port [n]', 'specify a port to use, by default the port 3000 will be used')
-    .option('-w, --watch', 'watch file changes and automatically refresh')
+    // .option('-R --readonly', 'Read-only serving')
+    // .option('-w, --watch', 'watch file changes and automatically refresh')
     .parse(process.argv);
 
 console.log('Initializing... ');
