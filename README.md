@@ -6,7 +6,7 @@ I need a more convinient tool to view and edit my lecture notes. But nothing sat
 
 Features:
 * Serve a root and I can browse everything with my browser(PDF, images, videos, audios);
-* Render markdown files, and the Mathematic formulas inside it(with the grammar of $LaTeX$);
+* Render markdown files, and the Mathematic formulas inside it(with the grammar of $\LaTeX$);
 * When viewing the markdown files, there is a thumbnail, for faster navigating and preview the structure of the file;
 
 ## Install
